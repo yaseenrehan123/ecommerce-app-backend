@@ -22,20 +22,23 @@ main()
 
 async function main() {
     app.use(cors({
-        origin: ["http://localhost:5173", "https://frontend-ha4p.onrender.com"],
+        origin: ["http://localhost:8081", "http://10.0.2.2:8081", "http://192.168.x.x:8081"],
         credentials: true
     }));
     app.use(express.urlencoded());
     app.use(express.json());
     //app.use(cookieParser());
 
+    app.use("/users/create", createUserRouter)
+
     app.listen(
         PORT,
+        "0.0.0.0",
         async () => {
             console.log(`It's alive on http://localhost:${PORT}`);
         }
     );
 
-    app.use("/users/create", createUserRouter)
+
 
 }
